@@ -11,5 +11,7 @@ this is the model for the earth's crust.
 
 Download this data to the data folder using `wget -e robots=off --mirror --no-parent -r https://dap.ceda.ac.uk/bodc/gebco/global/gebco_2025/`
 
+# some resources for the modeling step
+
 * example of masked feature encoding: https://arxiv.org/abs/2106.08254
 * example of sinusoidal positional encodings: https://arxiv.org/pdf/1906.05272
