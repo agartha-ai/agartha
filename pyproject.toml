@@ -5,4 +5,4 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = ["torch", "pandas", "jupyter", "xarray", "matplotlib", "packaging"
-,"netCDF4", "scipy"]
+,"netCDF4", "scipy", "dask"]
