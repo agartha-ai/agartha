@@ -14,22 +14,22 @@ So, in summary:
 
 ## Stage 1 data sets
 
-# ecm1 dataset
+### ecm1 dataset
 This is paper about ecm1 dataset: https://www.sciencedirect.com/science/article/pii/S0012825223001824
 
-# gebco dataset
+### gebco dataset
 This is a link to the global bathymetric data set: https://data.ceda.ac.uk/bodc/gebco/global/gebco_2025
 
 Download this data to the data folder using `wget -e robots=off --mirror --no-parent -r https://dap.ceda.ac.uk/bodc/gebco/global/gebco_2025/`
 
 ## Stage 2 data sets
 
-# lily dataset
+### lily dataset
 * This is the link to the lily database: https://zenodo.org/records/10425539
 * This is a link to the GitHub repo: https://github.com/IODP/LILY
 * This is a link to a paper about LILY dataset: https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2023GC011287
 
-# seiscrust dataset
+### seiscrust dataset
 * This is a link to the global bulk density and vp/vs: https://zenodo.org/records/10882143
 * slides about crust modeling: https://earth.esa.int/eogateway/documents/20142/37627/Crustal_modelling_Sampietro.pdf
 * This is a link to the global bulk density and vp/vs: https://zenodo.org/records/10882143
