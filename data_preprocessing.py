@@ -62,3 +62,7 @@ class GebcoDataset(torch.utils.data.Dataset):
 class SeisCRUSTDataset(torch.utils.data.Dataset):
     # TODO : implement
     pass
+
+class ecm1Dataset(torch.utils.data.Dataset):
+    # TODO : implement
+    pass
