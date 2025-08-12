@@ -7,6 +7,11 @@ import numpy as np
 import xarray as xr
 
 class GebcoDataset(torch.utils.data.Dataset):
+    """Data Container for the gebco bathymetry data set
+
+    Args:
+        torch (Dataset): stores the gebco dataset in an xarray for fast processing
+    """
     def __init__(self, netcdf_path):
         self.ds = xr.open_dataset(netcdf_path)
         self.elev_da = self.ds['elevation']
@@ -52,3 +57,8 @@ class GebcoDataset(torch.utils.data.Dataset):
         lon_subset = torch.from_numpy(elev_subset_da['lon'].values.astype(np.float32))
         
         return elev_subset, lat_subset, lon_subset
+    
+
+class SeisCRUSTDataset(torch.utils.data.Dataset):
+    # TODO : implement
+    pass
