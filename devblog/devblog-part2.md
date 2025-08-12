@@ -29,3 +29,5 @@ At the processing step is where we can start doing things like calculating the s
 my imagination is that I may be prematurely converting everything to `torch.utils.data.Dataset` containers but whatever. Probably it will be easier if everything goes into an xarray. I think maybe it is better to keep everything as xarray inside of it anyways. I dunno.
 
 I think i need to only use index for `Dataset.__getitem__` because the `DataLoader` class requires this so i can't get clever here and do something different. Essentially the goal should be that every data set that is being input into a `Dataset` container should return a `tensor`.
+
+I also should be using the github large file storage because these data sets are going ot be annoying to move around otherwise.

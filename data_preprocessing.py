@@ -27,6 +27,7 @@ class GebcoDataset(torch.utils.data.Dataset):
         return len(self.lats) * len(self.lons)
 
     def __getitem__(self, bbox):
+        # TODO : this cannot have some fancy bbox, it needs to work with only idx so that DataLoader can iterate through the data set
         lat_min, lat_max, lon_min, lon_max = bbox
         print(f"Requested bbox: lat({lat_min}, {lat_max}), lon({lon_min}, {lon_max})")
         
