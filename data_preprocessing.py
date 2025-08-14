@@ -6,12 +6,17 @@ import torch
 import numpy as np
 import xarray as xr
 
+def sinusoidal_positional_encodings():
+    # TODO : implement
+    pass
+
 class GebcoDataset(torch.utils.data.Dataset):
     """Data Container for the gebco bathymetry data set
 
     Args:
         torch (Dataset): stores the gebco dataset in an xarray for fast processing
     """
+    # TODO : needs to implement positional encoding calculator
     def __init__(self, netcdf_path):
         self.ds = xr.open_dataset(netcdf_path)
         self.elev_da = self.ds['elevation']
@@ -27,7 +32,7 @@ class GebcoDataset(torch.utils.data.Dataset):
         return len(self.lats) * len(self.lons)
 
     def __getitem__(self, bbox):
-        # TODO : this cannot have some fancy bbox, it needs to work with only idx so that DataLoader can iterate through the data set
+        # TODO : need to refactor so that instead of accepting bbox it accepts idx
         lat_min, lat_max, lon_min, lon_max = bbox
         print(f"Requested bbox: lat({lat_min}, {lat_max}), lon({lon_min}, {lon_max})")
         
@@ -48,6 +53,7 @@ class GebcoDataset(torch.utils.data.Dataset):
         # Select subset
         elev_subset_da = self.elev_da.sel(lat=lat_slice, lon=lon_slice)
         
+        # TODO : make all these prints into logging so you can turn logging on and off
         print(f"Selected {len(elev_subset_da.lat)} lats, {len(elev_subset_da.lon)} lons")
         print(f"Actual lat range: {elev_subset_da.lat.values}")
         print(f"Actual lon range: {elev_subset_da.lon.values}")
@@ -58,6 +64,10 @@ class GebcoDataset(torch.utils.data.Dataset):
         lon_subset = torch.from_numpy(elev_subset_da['lon'].values.astype(np.float32))
         
         return elev_subset, lat_subset, lon_subset
+    
+    def get_bbox(self, bbox):
+        # TODO : implement
+        pass
     
 
 class SeisCRUSTDataset(torch.utils.data.Dataset):
