@@ -17,11 +17,21 @@ class GebcoDataset(torch.utils.data.Dataset):
         torch (Dataset): stores the gebco dataset in an xarray for fast processing
     """
     # TODO : needs to implement positional encoding calculator
-    def __init__(self, netcdf_path):
+    def __init__(self, netcdf_path, scaling='minmax'):
         self.ds = xr.open_dataset(netcdf_path)
         self.elev_da = self.ds['elevation']
         self.lats = self.ds['lat'].values
         self.lons = self.ds['lon'].values
+
+        if scaling=='minmax':
+            self.el_min = self.elev_da.min()
+            self.el_max = self.elev_da.max()
+        elif scaling=='zscore':
+            self.el_mean = self.elev_da.mean()
+            self.el_std = self.elev_da.std()
+        else:
+            raise ValueError('This is not a type of scaling supported')
+
         
         # Print coordinate info for debugging
         print(f"Latitude range: {self.lats.min():.2f} to {self.lats.max():.2f}")
@@ -31,7 +41,40 @@ class GebcoDataset(torch.utils.data.Dataset):
     def __len__(self):
         return len(self.lats) * len(self.lons)
 
-    def __getitem__(self, bbox):
+    def __getitem__(self, idx):
+        window = self.extract_window(idx)  # Your window extraction logic
+        el, lats, lons = window
+        
+        # Apply scaling
+        if self.scaling_method == 'minmax':
+            scaled_el = (el - self.el_min) / (self.el_max - self.el_min)
+        elif self.scaling_method == 'zscore':
+            scaled_el = (el - self.el_mean) / self.el_std
+            
+        # Add positional encoding and return
+        pos_enc = sinusoidal_positional_encodings(window.shape[0], window.shape[1], D)
+        return scaled_el, pos_enc
+    
+    def extract_window(self, idx):
+        """extracts a 1 degree by 1 degree window around the lat/lon that are defined by the index
+
+        Args:
+            idx (int): an index value given by the DataLoader class
+
+        Returns:
+            tuple : bounding box of (elevations, latitudes, longitudes) for a 1 by 1 degree square
+        """
+        lat = self.lats[idx]
+        lon = self.lon[idx]
+        lat_min = lat - 0.5
+        lat_max = lat + 0.5
+        lon_min = lon - 0.5
+        lon_max = lon + 0.5
+        bbox = (lat_min, lat_max, lon_min, lon_max)
+        return self.get_bbox(bbox=bbox)
+
+    # def __getitem__(self, bbox):
+    def get_bbox(self, bbox):
         # TODO : need to refactor so that instead of accepting bbox it accepts idx
         lat_min, lat_max, lon_min, lon_max = bbox
         print(f"Requested bbox: lat({lat_min}, {lat_max}), lon({lon_min}, {lon_max})")
