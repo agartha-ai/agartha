@@ -16,7 +16,7 @@ jobs:
       - name: Convert citations in devblog markdown files
         run: |
           for mdfile in $(find ./devblog -name '*.md'); do
-            pandoc --citeproc --bibliography=devblog/refs.bib "$mdfile" -o "$mdfile"
+            pandoc --citeproc --bibliography=devblog/refs.bib "$mdfile" -o "$mdfile" --metadata reference-section-title="References"
           done
       
       - name: Commit results
