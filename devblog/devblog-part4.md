@@ -6,7 +6,7 @@ very useful at the poles. I found this paper (Rußwurm et al. 2024) which
 describes [this repo](https://github.com/MarcCoru/locationencoder) which
 seems like a good place to start.
 
-# References
+I also addeda github action that generates the references if I have them. All references go into the refs.bib file so everything is ready when I happen to write a paper or something. But anyways, thats cool. :-)
 
 # References
 
