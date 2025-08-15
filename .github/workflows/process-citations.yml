@@ -1,6 +1,9 @@
 name: Process Citations
 on: push
 
+permissions:
+  contents: write  # Allow the workflow to write to repository contents
+
 jobs:
   convert:
     runs-on: ubuntu-latest
