@@ -13,7 +13,7 @@ be the same size, for example the bathymetric data is 15 arc seconds but
 the vp/vs data is 1 degree. This can be solved with mean pooling so I am
 not super worried, better to get all the data into a single place.
 
-I also need to find more data sets because this isn't enough. I would
+I also need to find more data sets because this isn’t enough. I would
 like to also include
 
 1.  gravity
@@ -34,7 +34,7 @@ to the data sets.
     start constructing the positional vectors for the modeling. To get
     started it should look something like:
 
-| lat \| lon \| depth \| values.... \|
+lat \| lon \| depth \| values…. \|
 
 That should get me started and then I can build stuff from there.
 
