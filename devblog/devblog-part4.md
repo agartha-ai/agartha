@@ -8,3 +8,5 @@ repo](https://github.com/MarcCoru/locationencoder) which seems like a
 good place to start.
 
 # References {#bibliography .unnumbered}
+
+# References {#bibliography .unnumbered}
