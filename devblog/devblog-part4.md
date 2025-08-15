@@ -6,3 +6,5 @@ very useful at the poles. I found this paper
 [@russwurm2024locationencoding] which describes [this
 repo](https://github.com/MarcCoru/locationencoder) which seems like a
 good place to start.
+
+# References {#bibliography .unnumbered}
