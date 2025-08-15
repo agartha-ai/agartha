@@ -1,0 +1,25 @@
+name: Process Citations
+on: push
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install Pandoc
+        run: sudo apt-get update && sudo apt-get install -y pandoc
+      
+      - name: Convert citations in devblog markdown files
+        run: |
+          for mdfile in $(find ./devblog -name '*.md'); do
+            pandoc --citeproc --bibliography=devblog/refs.bib "$mdfile" -o "$mdfile"
+          done
+      
+      - name: Commit results
+        run: |
+          git config user.name 'github-actions'
+          git config user.email 'github-actions@github.com'
+          git add 'devblog/*.md'
+          git commit -m "Auto-update citations in devblog" || echo "No changes to commit"
+          git push
