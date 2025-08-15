@@ -8,6 +8,7 @@ import xarray as xr
 
 def sinusoidal_positional_encodings():
     # TODO : implement
+    # this should be converted for spherical coordinates
     pass
 
 class GebcoDataset(torch.utils.data.Dataset):
@@ -106,12 +107,7 @@ class GebcoDataset(torch.utils.data.Dataset):
         lat_subset = torch.from_numpy(elev_subset_da['lat'].values.astype(np.float32))
         lon_subset = torch.from_numpy(elev_subset_da['lon'].values.astype(np.float32))
         
-        return elev_subset, lat_subset, lon_subset
-    
-    def get_bbox(self, bbox):
-        # TODO : implement
-        pass
-    
+        return elev_subset, lat_subset, lon_subset    
 
 class SeisCRUSTDataset(torch.utils.data.Dataset):
     # TODO : implement

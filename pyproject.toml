@@ -4,5 +4,20 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
-dependencies = ["torch", "pandas", "jupyter", "xarray", "matplotlib", "packaging"
-,"netCDF4", "scipy", "dask", "geopandas",]
+dependencies = [
+    "torch",
+    "pandas",
+    "jupyter",
+    "xarray",
+    "matplotlib",
+    "packaging",
+    "netCDF4",
+    "scipy",
+    "dask",
+    "geopandas",
+    "lightning>=2.5.3",
+    "einops>=0.8.1",
+    "basemap>=2.0.0",
+    "scikit-learn>=1.7.1",
+    "torchvision>=0.23.0",
+]
